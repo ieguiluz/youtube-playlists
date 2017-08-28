@@ -1,0 +1,32 @@
+<?php $__env->startSection('title', 'Playlists'); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="col-lg-12">
+	<a href="<?php echo e(route('admin.playlists.create')); ?>" class="btn btn-default">New playlist</a>
+	<hr>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="row">
+			<?php foreach($playlists as $playlist): ?>
+				<div class="col-sm-6 col-md-3">
+					<div class="thumbnail">
+						<img src="https://dummyimage.com/242x200/000/fff" alt="<?php echo e($playlist->title); ?>">
+						<div class="caption">
+							<h3><?php echo e($playlist->title); ?></h3>
+							<p><?php echo e($playlist->description); ?></p>
+							<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+						</div>
+					</div>
+				</div>
+			<?php endforeach; ?>
+			</div>
+		</div>
+	</div>
+
+	<center>
+		<?php echo $playlists->render(); ?>
+
+	</center>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.template.main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

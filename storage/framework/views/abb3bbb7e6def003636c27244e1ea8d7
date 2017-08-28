@@ -1,0 +1,41 @@
+<?php $__env->startSection('title', 'Modify user: ' . $user->name); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="col-lg-6">
+<hr>
+	<div class="form-panel">
+		<?php echo Form::open(['route' => ['admin.users.update', $user], 'method' => 'PUT']); ?>
+
+
+			<div class="form-group">
+				<?php echo Form::label('name', 'Full name'); ?>
+
+				<?php echo Form::text('name', $user->name, ['class' => 'form-control', 'placeholder' => 'Full Name', 'required']); ?>
+
+			</div>
+
+			<div class="form-group">
+				<?php echo Form::label('email', 'e-Mail'); ?>
+
+				<?php echo Form::email('email', $user->email, ['class' => 'form-control', 'placeholder' => 'email@example.com', 'required']); ?>
+
+			</div>
+
+			<div class="form-group">
+				<?php echo Form::label('type', 'User type'); ?>
+
+				<?php echo Form::select('type', ['admin' => 'Admin', 'member' => 'Member'], $user->type, ['class' => 'form-control']); ?>
+
+			</div>
+
+			<div class="form-group">
+				<?php echo Form::submit('Save changes', ['class' => 'btn btn-primary']); ?>
+
+			</div>
+
+		<?php echo Form::close(); ?>
+
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.template.main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

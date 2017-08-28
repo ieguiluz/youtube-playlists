@@ -1,0 +1,46 @@
+<?php $__env->startSection('title', 'New user'); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="col-lg-6"><!--col-lg-offset-3-->
+	<div class="form-panel">
+		<?php echo Form::open(['route' => 'admin.users.store', 'method' => 'POST']); ?>
+
+			<div class="form-group">
+				<?php echo Form::label('name', 'Full name'); ?>
+
+				<?php echo Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Full Name', 'required']); ?>
+
+			</div>
+
+			<div class="form-group">
+				<?php echo Form::label('email', 'e-Mail'); ?>
+
+				<?php echo Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'email@example.com', 'required']); ?>
+
+			</div>
+
+			<div class="form-group">
+				<?php echo Form::label('password', 'Password'); ?>
+
+				<?php echo Form::password('password', ['class' => 'form-control', 'placeholder' => '**********', 'required']); ?>
+
+			</div>
+
+			<div class="form-group">
+				<?php echo Form::label('type', 'User type'); ?>
+
+				<?php echo Form::select('type', ['admin' => 'Admin', 'member' => 'Member'], null, ['class' => 'form-control', 'placeholder' => '[Select a user type]', 'required']); ?>
+
+			</div>
+
+			<div class="form-group">
+				<?php echo Form::submit('Save', ['class' => 'btn btn-primary']); ?>
+
+			</div>
+
+		<?php echo Form::close(); ?>
+
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.template.main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
