@@ -88,7 +88,18 @@ class PlaylistsController extends Controller
      */
     public function store(Request $request)
     {
+        $photo_cover_file = $request->file('photo_cover');
+        if ($request->file('photo_cover'))
+        {
+            $photo_cover_file = $request->file('photo_cover');
+            $photo_cover_name = 'playlist_cover_' . time() . '.' . $photo_cover_file->getClientOriginalExtension();
+            //dd($photo_cover_name);
+            $photo_cover_path = public_path() . '/img/playlists/photocovers';
+            $photo_cover_file->move($photo_cover_path, $photo_cover_name);
+        }
+
         $playlist = new Playlist($request->all());
+        $playlist->photo_cover = $photo_cover_name;
         $playlist->user_id = \Auth::user()->id;
         $playlist->save();
 

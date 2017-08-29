@@ -17,7 +17,7 @@ class Playlist extends Model implements SluggableInterface
 
     protected $table = "playlists";
 
-    protected $fillable = ['title', 'description', 'user_id'];
+    protected $fillable = ['title', 'description', 'user_id', 'photo_cover'];
 
     public function user()
     {

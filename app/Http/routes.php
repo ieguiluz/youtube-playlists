@@ -69,6 +69,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 		'as'	=> 'admin.youtubevideos.index'
 	]);
 
+	Route::get('playlists/{id}/youtubevideos/showvideos', [
+		'uses' 	=> 'YoutubevideosController@showvideos',
+		'as'	=> 'admin.youtubevideos.showvideos'
+	]);
+
 	Route::get('playlists/{id}/youtubevideos/create', [
 		'uses' 	=> 'YoutubevideosController@create',
 		'as'	=> 'admin.youtubevideos.create'

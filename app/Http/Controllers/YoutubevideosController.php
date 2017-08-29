@@ -25,6 +25,15 @@ class YoutubevideosController extends Controller
             ->with('id_playlist', $id);
     }
 
+    public function showvideos($id)
+    {
+        //dd($id);
+        $youtubevideos = Youtubevideo::where('playlist_id', $id)->orderBy('id', 'DESC')->paginate(5);
+        return view('admin.youtubevideos.showvideos')
+            ->with('youtubevideos', $youtubevideos)
+            ->with('id_playlist', $id);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

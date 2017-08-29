@@ -15,11 +15,11 @@
 					<?php foreach($myplaylists as $myplaylist): ?>
 						<div class="col-sm-6 col-md-3">
 							<div class="thumbnail">
-								<img src="https://dummyimage.com/242x200/000/fff" alt="<?php echo e($myplaylist->title); ?>">
+								<img src="/img/playlists/photocovers/<?php echo e($myplaylist->photo_cover); ?>" alt="<?php echo e($myplaylist->title); ?>">
 								<div class="caption">
 									<h3><?php echo e($myplaylist->title); ?></h3>
 									<p><?php echo e($myplaylist->description); ?></p>
-									<p><a href="<?php echo e(route('admin.youtubevideos.index', ['id' => $myplaylist->id])); ?>" class="btn btn-primary" role="button">Add YouTube Video</a> <!--a href="#" class="btn btn-default" role="button">Button</a--></p>
+									<p><a href="<?php echo e(route('admin.youtubevideos.index', ['id' => $myplaylist->id])); ?>" class="btn btn-primary" role="button">Add YouTube Video</a> <!--a href="http://localhost:8000/admin/playlists/2/youtubevideos/showvideos" class="btn btn-default" role="button">Button</a--></p>
 								</div>
 							</div>
 						</div>
@@ -44,11 +44,11 @@
 					<?php foreach($playlistsFollow as $playlist): ?>
 						<div class="col-sm-6 col-md-3">
 							<div class="thumbnail">
-								<img src="https://dummyimage.com/242x200/000/fff" alt="<?php echo e($playlist->title); ?>">
+								<img src="/img/playlists/photocovers/<?php echo e($playlist->photo_cover); ?>" alt="<?php echo e($playlist->title); ?>">
 								<div class="caption">
 									<h3><?php echo e($playlist->title); ?></h3>
 									<p><?php echo e($playlist->description); ?></p>
-									<p><a href="<?php echo e(route('admin.playlists.unfollow', ['id' => $playlist->id])); ?>" class="btn btn-primary" role="button">Unfollow</a></p>
+									<p><a href="<?php echo e(route('admin.playlists.unfollow', ['id' => $playlist->id])); ?>" class="btn btn-primary" role="button">Unfollow</a><a href="<?php echo e(route('admin.youtubevideos.showvideos', ['id' => $playlist->id])); ?>" class="btn btn-primary" role="button">See playlist</a></p>
 								</div>
 							</div>
 						</div>
@@ -73,11 +73,11 @@
 					<?php foreach($playlistsUnfollow as $playlist): ?>
 						<div class="col-sm-6 col-md-3">
 							<div class="thumbnail">
-								<img src="https://dummyimage.com/242x200/000/fff" alt="<?php echo e($playlist->title); ?>">
+								<img src="/img/playlists/photocovers/<?php echo e($playlist->photo_cover); ?>" alt="<?php echo e($playlist->title); ?>">
 								<div class="caption">
 									<h3><?php echo e($playlist->title); ?></h3>
 									<p><?php echo e($playlist->description); ?></p>
-									<p><a href="<?php echo e(route('admin.playlists.follow', ['id' => $playlist->id])); ?>" class="btn btn-primary" role="button">Follow</a></p>
+									<p><a href="<?php echo e(route('admin.playlists.follow', ['id' => $playlist->id])); ?>" class="btn btn-primary" role="button">Follow</a><a href="<?php echo e(route('admin.youtubevideos.showvideos', ['id' => $playlist->id])); ?>" class="btn btn-primary" role="button">See playlist</a></p>
 								</div>
 							</div>
 						</div>
