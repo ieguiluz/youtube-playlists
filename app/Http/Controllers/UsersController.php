@@ -48,6 +48,22 @@ class UsersController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function new(Request $request)
+    {
+        $user = new User($request->all());
+        $user->password = bcrypt($request->password);
+        $user->save();
+
+        Flash::success($user->name . " has been saved successfully!");
+        return redirect()->route('admin.auth.login');
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id

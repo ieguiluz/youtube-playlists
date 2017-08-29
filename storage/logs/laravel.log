@@ -4678,3 +4678,24 @@ Stack trace:
 #55 /home/ieguiluz/projects/playlist/public/index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #56 /home/ieguiluz/projects/playlist/server.php(21): require_once('/home/ieguiluz/...')
 #57 {main}  
+[2017-08-29 13:18:24] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to undefined function App\Http\Controllers\index()' in /home/ieguiluz/projects/playlist/app/Http/Controllers/PlaylistsController.php:124
+Stack trace:
+#0 {main}  
+[2017-08-29 13:37:19] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'new' (T_NEW), expecting identifier (T_STRING)' in /home/ieguiluz/projects/playlist/app/Http/Controllers/UsersController.php:56
+Stack trace:
+#0 {main}  
+[2017-08-29 13:40:14] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'new' (T_NEW), expecting identifier (T_STRING)' in /home/ieguiluz/projects/playlist/app/Http/Controllers/UsersController.php:56
+Stack trace:
+#0 {main}  
+[2017-08-29 13:41:31] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'new' (T_NEW), expecting identifier (T_STRING)' in /home/ieguiluz/projects/playlist/app/Http/Controllers/UsersController.php:56
+Stack trace:
+#0 {main}  
+[2017-08-29 13:41:32] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'new' (T_NEW), expecting identifier (T_STRING)' in /home/ieguiluz/projects/playlist/app/Http/Controllers/UsersController.php:56
+Stack trace:
+#0 {main}  
+[2017-08-29 13:42:18] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'new' (T_NEW), expecting identifier (T_STRING)' in /home/ieguiluz/projects/playlist/app/Http/Controllers/UsersController.php:56
+Stack trace:
+#0 {main}  
+[2017-08-29 13:43:27] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'new' (T_NEW), expecting identifier (T_STRING)' in /home/ieguiluz/projects/playlist/app/Http/Controllers/UsersController.php:56
+Stack trace:
+#0 {main}  

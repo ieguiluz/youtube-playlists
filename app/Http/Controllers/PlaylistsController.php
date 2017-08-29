@@ -40,7 +40,7 @@ class PlaylistsController extends Controller
         //dd($xArray);
 
 
-        $playlists = Playlist::where('id', 'not in', $follow)->orderBy('id', 'DESC')->paginate(4);
+        $playlists = Playlist::where('id', 'not in', $follow)->orderBy('id', 'DESC')->paginate();
 
         $playlistsFollow = Playlist::whereIn('id',$xArray)->get();
         $playlistsUnfollow = Playlist::whereNotIn('id',$xArray)->where('user_id', '!=', $userid)->get();
@@ -66,7 +66,7 @@ class PlaylistsController extends Controller
         $userid = \Auth::user()->id;
         $playlists = Playlist::where('user_id', '!=', $userid)->orderBy('id', 'DESC')->paginate(4);
         die(var_dump($playlists));
-        return view('admin.playlists.all')
+        return redirect()->route('admin.playlists.all')
             ->with('playlists', $playlists);
     }
 
@@ -113,7 +113,7 @@ class PlaylistsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function follow($id)
     {
         $userid = \Auth::user()->id;
 
@@ -122,10 +122,76 @@ class PlaylistsController extends Controller
         );
 
         $myplaylists = Playlist::where('user_id', '=', $userid)->orderBy('id', 'DESC')->paginate();
-        $playlists = Playlist::where('user_id', '!=', $userid)->orderBy('id', 'DESC')->paginate(4);
+        $follow = DB::table('playlist_follower')
+            ->select(
+                'playlist_id'
+            )
+            ->where('user_id', '=', $userid)->get();
+        //dd($follow);
+        $x = '';
+        $xArray = [];
+        for ($i=0; $i < count($follow); $i++) { 
+            $x .= $follow[$i]->playlist_id.',';
+            $xArray[] = $follow[$i]->playlist_id;
+        }
+        $x = substr($x, 0, -1);
+        //dd($xArray);
+
+
+        $playlists = Playlist::where('id', 'not in', $follow)->orderBy('id', 'DESC')->paginate();
+
+        $playlistsFollow = Playlist::whereIn('id',$xArray)->get();
+        $playlistsUnfollow = Playlist::whereNotIn('id',$xArray)->where('user_id', '!=', $userid)->get();
+        //dd($playlistsUnfollow);
+
         return redirect()->route('admin.playlists.index')
             ->with('myplaylists', $myplaylists)
-            ->with('playlists', $playlists);
+            ->with('playlistsFollow', $playlistsFollow)
+            ->with('playlistsUnfollow', $playlistsUnfollow);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function unfollow($id)
+    {
+        $userid = \Auth::user()->id;
+
+        DB::table('playlist_follower')->insertGetId(
+            ['playlist_id' => $id, 'user_id' => $userid]
+        );
+        DB::table('playlist_follower')->where('playlist_id','=',$id)->where('user_id','=',$userid)->delete();
+
+        $myplaylists = Playlist::where('user_id', '=', $userid)->orderBy('id', 'DESC')->paginate();
+        $follow = DB::table('playlist_follower')
+            ->select(
+                'playlist_id'
+            )
+            ->where('user_id', '=', $userid)->get();
+        //dd($follow);
+        $x = '';
+        $xArray = [];
+        for ($i=0; $i < count($follow); $i++) { 
+            $x .= $follow[$i]->playlist_id.',';
+            $xArray[] = $follow[$i]->playlist_id;
+        }
+        $x = substr($x, 0, -1);
+        //dd($xArray);
+
+
+        $playlists = Playlist::where('id', 'not in', $follow)->orderBy('id', 'DESC')->paginate();
+
+        $playlistsFollow = Playlist::whereIn('id',$xArray)->get();
+        $playlistsUnfollow = Playlist::whereNotIn('id',$xArray)->where('user_id', '!=', $userid)->get();
+        //dd($playlistsUnfollow);
+
+        return redirect()->route('admin.playlists.index')
+            ->with('myplaylists', $myplaylists)
+            ->with('playlistsFollow', $playlistsFollow)
+            ->with('playlistsUnfollow', $playlistsUnfollow);
     }
 
     /**

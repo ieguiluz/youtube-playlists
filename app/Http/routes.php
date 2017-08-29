@@ -51,9 +51,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	
 	//Route::get('playlists/all', 'PlaylistsController@all');
 
-	Route::get('playlists/edit/{id}', [
-		'uses' 	=> 'PlaylistsController@edit',
-		'as'	=> 'admin.playlists.edit'
+	Route::get('playlists/follow/{id}', [
+		'uses' 	=> 'PlaylistsController@follow',
+		'as'	=> 'admin.playlists.follow'
+	]);
+
+	Route::get('playlists/unfollow/{id}', [
+		'uses' 	=> 'PlaylistsController@unfollow',
+		'as'	=> 'admin.playlists.unfollow'
 	]);
 
 	/*
@@ -80,6 +85,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	]);
 
 });
+/*
+Route::get('users/new', [
+	'uses' 	=> 'UsersController@new',
+	'as'	=> 'users.new'
+]);*/
 
 // Authentication routes...
 Route::get('admin/auth/login', [

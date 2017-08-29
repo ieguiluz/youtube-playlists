@@ -50,7 +50,7 @@
 								<div class="caption">
 									<h3>{{ $playlist->title }}</h3>
 									<p>{{ $playlist->description }}</p>
-									<p><a href="{{ route('admin.playlists.edit', ['id' => $playlist->id]) }}" class="btn btn-primary" role="button">Unfollow</a></p>
+									<p><a href="{{ route('admin.playlists.unfollow', ['id' => $playlist->id]) }}" class="btn btn-primary" role="button">Unfollow</a></p>
 								</div>
 							</div>
 						</div>
@@ -79,7 +79,7 @@
 								<div class="caption">
 									<h3>{{ $playlist->title }}</h3>
 									<p>{{ $playlist->description }}</p>
-									<p><a href="{{ route('admin.playlists.edit', ['id' => $playlist->id]) }}" class="btn btn-primary" role="button">Follow</a></p>
+									<p><a href="{{ route('admin.playlists.follow', ['id' => $playlist->id]) }}" class="btn btn-primary" role="button">Follow</a></p>
 								</div>
 							</div>
 						</div>
