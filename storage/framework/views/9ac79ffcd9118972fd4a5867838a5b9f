@@ -26,6 +26,9 @@
 
 	<?php echo Form::close(); ?>
 
+		<div class="form-group pull-right">
+			Don't have account yet? <a class="btn btn-default" href="<?php echo e(route('users.addnew')); ?>" role="button">Create an account</a>
+		</div>
 </div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('admin.template.main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

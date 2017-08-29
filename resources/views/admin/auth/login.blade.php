@@ -21,5 +21,8 @@
 		</div>
 
 	{!! Form::close() !!}
+		<div class="form-group pull-right">
+			Don't have account yet? <a class="btn btn-default" href="{{ route('users.addnew') }}" role="button">Create an account</a>
+		</div>
 </div>
 @endsection

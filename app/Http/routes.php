@@ -85,11 +85,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	]);
 
 });
-/*
-Route::get('users/new', [
-	'uses' 	=> 'UsersController@new',
-	'as'	=> 'users.new'
-]);*/
+
+Route::get('users/addnew', [
+	'uses' 	=> 'UsersController@addnew',
+	'as'	=> 'users.addnew'
+]);
+
+Route::post('users/', [
+	'uses' 	=> 'UsersController@storenew',
+	'as'	=> 'users.storenew'
+]);
 
 // Authentication routes...
 Route::get('admin/auth/login', [

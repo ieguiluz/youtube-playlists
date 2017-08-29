@@ -32,6 +32,16 @@ class UsersController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addnew()
+    {
+        return view('users.addnew');
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -53,13 +63,14 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function new(Request $request)
+    public function storenew(Request $request)
     {
+        //dd('holaaaa');
         $user = new User($request->all());
         $user->password = bcrypt($request->password);
         $user->save();
 
-        Flash::success($user->name . " has been saved successfully!");
+        Flash::success("You have been saved successfully!");
         return redirect()->route('admin.auth.login');
     }
 
