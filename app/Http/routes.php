@@ -25,17 +25,53 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	    return view('welcome');
 	}]);
 
+	/*
+	*	Users
+	*/
 	Route::resource('users', 'UsersController');
 	Route::get('users/{id}/destroy', [
 		'uses' 	=> 'UsersController@destroy',
 		'as'	=> 'admin.users.destroy'
 	]);
 
+	/*
+	*	Playlists
+	*/
 	Route::resource('playlists', 'PlaylistsController');
 
-	Route::get('playlists/{id}/songs/create', [
-		'uses' 	=> 'SongsController@create',
-		'as'	=> 'admin.songs.create'
+	/*Route::get('playlists/all', [
+		'uses' 	=> 'PlaylistsController@all',
+		'as'	=> 'admin.playlists.all'
+	]);*/
+
+	/*Route::get('playlists/all', function(){
+		return "hola mundo";
+	});*/
+
+	
+	Route::get('playlists/all', 'PlaylistsController@all');
+
+	/*
+	*	YouTube Videos
+	*/
+	Route::get('playlists/{id}/youtubevideos/index', [
+		'uses' 	=> 'YoutubevideosController@index',
+		'as'	=> 'admin.youtubevideos.index'
+	]);
+
+	Route::get('playlists/{id}/youtubevideos/create', [
+		'uses' 	=> 'YoutubevideosController@create',
+		'as'	=> 'admin.youtubevideos.create'
+	]);
+
+	Route::post('playlists/{id}/youtubevideos/store', [
+		'uses' 	=> 'YoutubevideosController@store',
+		'as'	=> 'admin.youtubevideos.store'
+	]);
+
+	Route::get('playlists/{id}/youtubevideos/{idyt}/destroy', [
+		'uses' 	=> 'YoutubevideosController@destroy',
+		'as'	=> 'admin.youtubevideos.destroy'
 	]);
 
 });

@@ -7,14 +7,14 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="row">
-			<?php foreach($playlists as $playlist): ?>
+			<?php foreach($myplaylists as $myplaylist): ?>
 				<div class="col-sm-6 col-md-3">
 					<div class="thumbnail">
-						<img src="https://dummyimage.com/242x200/000/fff" alt="<?php echo e($playlist->title); ?>">
+						<img src="https://dummyimage.com/242x200/000/fff" alt="<?php echo e($myplaylist->title); ?>">
 						<div class="caption">
-							<h3><?php echo e($playlist->title); ?></h3>
-							<p><?php echo e($playlist->description); ?></p>
-							<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+							<h3><?php echo e($myplaylist->title); ?></h3>
+							<p><?php echo e($myplaylist->description); ?></p>
+							<p><a href="<?php echo e(route('admin.youtubevideos.index', ['id' => $myplaylist->id])); ?>" class="btn btn-primary" role="button">Add YouTube Video</a> <!--a href="#" class="btn btn-default" role="button">Button</a--></p>
 						</div>
 					</div>
 				</div>
@@ -23,10 +23,27 @@
 		</div>
 	</div>
 
-	<center>
-		<?php echo $playlists->render(); ?>
-
-	</center>
+	<hr>
+	<a href="<?php echo e(route('admin.playlists.all')); ?>" class="btn btn-default">Find playlists</a>
+	<hr>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="row">
+			<?php foreach($playlists as $playlist): ?>
+				<div class="col-sm-6 col-md-3">
+					<div class="thumbnail">
+						<img src="https://dummyimage.com/242x200/000/fff" alt="<?php echo e($playlist->title); ?>">
+						<div class="caption">
+							<h3><?php echo e($playlist->title); ?></h3>
+							<p><?php echo e($playlist->description); ?></p>
+							<p><a href="<?php echo e(route('admin.youtubevideos.index', ['id' => $playlist->id])); ?>" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+						</div>
+					</div>
+				</div>
+			<?php endforeach; ?>
+			</div>
+		</div>
+	</div>
 </div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('admin.template.main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

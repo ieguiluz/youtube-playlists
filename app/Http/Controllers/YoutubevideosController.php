@@ -6,45 +6,23 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Playlist;
+use App\Youtubevideo;
 use Laracasts\Flash\Flash;
 
-class PlaylistsController extends Controller
+class YoutubevideosController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        /*$playlists = Playlist::orderBy('id', 'DESC')->paginate(4);
-        return view('admin.playlists.index', compact('playlists'));*/
-
-        $userid = \Auth::user()->id;
-        $myplaylists = Playlist::where('user_id', '=', $userid)->orderBy('id', 'DESC')->paginate();
-        $playlists = Playlist::where('user_id', '!=', $userid)->orderBy('id', 'DESC')->paginate(4);
-        return view('admin.playlists.index')
-            ->with('myplaylists', $myplaylists)
-            ->with('playlists', $playlists);
-
-        /*$playlists = DB::table('playlists')
-            ->select()
-            ->where*/
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function all()
-    {
-        $userid = \Auth::user()->id;
-        $playlists = Playlist::where('user_id', '!=', $userid)->orderBy('id', 'DESC')->paginate(4);
-        die(var_dump($playlists));
-        return view('admin.playlists.all')
-            ->with('playlists', $playlists);
+        //dd($id);
+        $youtubevideos = Youtubevideo::where('playlist_id', $id)->orderBy('id', 'DESC')->paginate(5);
+        return view('admin.youtubevideos.index')
+            ->with('youtubevideos', $youtubevideos)
+            ->with('id_playlist', $id);
     }
 
     /**
@@ -52,9 +30,10 @@ class PlaylistsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('admin.playlists.create');
+        //dd($id);
+        return view('admin.youtubevideos.create')->with('id_playlist', $id);
     }
 
     /**
@@ -65,12 +44,16 @@ class PlaylistsController extends Controller
      */
     public function store(Request $request)
     {
-        $playlist = new Playlist($request->all());
-        $playlist->user_id = \Auth::user()->id;
-        $playlist->save();
+        $youtubevideo = new Youtubevideo($request->all());
+        $youtubevideourl = $request->video_url;
+        $youtubevideourl = explode("v=", $youtubevideourl);
+        $youtubevideo->video_url = $youtubevideourl[1];
+        //dd($request->video_url);
+        $youtubevideo->save();
 
-        Flash::success("The playlist <b>" . $playlist->title . "</b> has been saved successfully!");
-        return redirect()->route('admin.playlists.index');
+        Flash::success("The video <b>" . $youtubevideo->title . "</b> has been saved successfully!");
+        //return redirect()->route('admin.youtubevideos.index');
+        return redirect()->route('admin.youtubevideos.index', ['id' => $youtubevideo->playlist_id]);
     }
 
     /**
