@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Youtubevideo;
@@ -107,6 +107,15 @@ class YoutubevideosController extends Controller
      */
     public function destroy($id)
     {
+        //$videos = DB::Table('youtubevideos')->select('playlist_id')->where('id','=',$id);
+        $videos = Youtubevideo::where('id',$id)->get();
+        foreach ($videos as $video) {
+            $id_playlist = $video['playlist_id'];
+        }
+        
+        Youtubevideo::find($id)->delete();
+        return redirect()->route('admin.youtubevideos.index',['id'=>$id_playlist]);
+
         //
     }
 }

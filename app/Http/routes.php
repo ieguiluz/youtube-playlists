@@ -84,7 +84,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 		'as'	=> 'admin.youtubevideos.store'
 	]);
 
-	Route::get('playlists/{id}/youtubevideos/{idyt}/destroy', [
+	Route::get('playlists/{id}/youtubevideos/destroy', [
 		'uses' 	=> 'YoutubevideosController@destroy',
 		'as'	=> 'admin.youtubevideos.destroy'
 	]);

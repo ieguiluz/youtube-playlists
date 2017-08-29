@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav id="nav-footer" class="navbar navbar-default">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-5" aria-expanded="false">

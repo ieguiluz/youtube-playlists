@@ -16,7 +16,7 @@
       @if(Auth::user())
       <ul class="nav navbar-nav">
         <!--li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li-->
-        <li><a href="#">Home</a></li>
+        <!--li><a href="#">Home</a></li-->
         @if(Auth::user()->type == 'admin')
         <li><a href="{{ route('admin.users.index') }}">Users</a></li>
         @endif
@@ -39,7 +39,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Another action</a></li>
+            <!--li><a href="#">Another action</a></li-->
             <li role="separator" class="divider"></li>
             <li><a href="{{ route('admin.auth.logout') }}"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log out</a></li>
           </ul>

@@ -12,7 +12,7 @@
 						<th>ID</th>
 						<th>Youtube Video</th>
 						<th>Url</th>
-						<th>Action</th>
+						<!--th>Action</th-->
 					</thead>
 					<tbody>
 					    @foreach ($youtubevideos as $youtubevideo)
@@ -20,9 +20,9 @@
 					        	<td>{{ $youtubevideo->id }}</td>
 					        	<td>{{ $youtubevideo->title }}</td>
 					        	<td><iframe width="560" height="315" src="https://www.youtube.com/embed/{{ $youtubevideo->video_url }}?rel=0" frameborder="0" allowfullscreen></iframe></td>
-					        	<td>
+					        	<!--td>
 					        		<a href="{{ route('admin.youtubevideos.destroy', $youtubevideo->id) }}" onclick="return confirm('Do you wish to delete {{ $youtubevideo->title }}?')" class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
-					        	</td>
+					        	</td-->
 					        </tr>
 					    @endforeach
 					</tbody>

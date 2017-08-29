@@ -1,8 +1,11 @@
 <?php $__env->startSection('title', 'Home'); ?>
 
 <?php $__env->startSection('content'); ?>
-    <h1>Hola esto es Bootstrap</h1>
-    <a href="" class="btn btn-success">Soy un boton de Bootstrap</a>
+	<div class="jumbotron">
+		<h1>Hello!</h1>
+		<p>This system will allow you to create your favorite playlists and follow playlists of other users.</p>
+		<!--p><a class="btn btn-primary" role="button" href="<?php echo e(route('admin.auth.login')); ?>"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Log in</a></p-->
+	</div>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('admin.template.main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
