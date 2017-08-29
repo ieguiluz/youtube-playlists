@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -23,10 +24,32 @@ class PlaylistsController extends Controller
 
         $userid = \Auth::user()->id;
         $myplaylists = Playlist::where('user_id', '=', $userid)->orderBy('id', 'DESC')->paginate();
-        $playlists = Playlist::where('user_id', '!=', $userid)->orderBy('id', 'DESC')->paginate(4);
+        $follow = DB::table('playlist_follower')
+            ->select(
+                'playlist_id'
+            )
+            ->where('user_id', '=', $userid)->get();
+        //dd($follow);
+        $x = '';
+        $xArray = [];
+        for ($i=0; $i < count($follow); $i++) { 
+            $x .= $follow[$i]->playlist_id.',';
+            $xArray[] = $follow[$i]->playlist_id;
+        }
+        $x = substr($x, 0, -1);
+        //dd($xArray);
+
+
+        $playlists = Playlist::where('id', 'not in', $follow)->orderBy('id', 'DESC')->paginate(4);
+
+        $playlistsFollow = Playlist::whereIn('id',$xArray)->get();
+        $playlistsUnfollow = Playlist::whereNotIn('id',$xArray)->where('user_id', '!=', $userid)->get();
+        //dd($playlistsUnfollow);
+
         return view('admin.playlists.index')
             ->with('myplaylists', $myplaylists)
-            ->with('playlists', $playlists);
+            ->with('playlistsFollow', $playlistsFollow)
+            ->with('playlistsUnfollow', $playlistsUnfollow);
 
         /*$playlists = DB::table('playlists')
             ->select()
@@ -92,7 +115,17 @@ class PlaylistsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $userid = \Auth::user()->id;
+
+        DB::table('playlist_follower')->insertGetId(
+            ['playlist_id' => $id, 'user_id' => $userid]
+        );
+
+        $myplaylists = Playlist::where('user_id', '=', $userid)->orderBy('id', 'DESC')->paginate();
+        $playlists = Playlist::where('user_id', '!=', $userid)->orderBy('id', 'DESC')->paginate(4);
+        return redirect()->route('admin.playlists.index')
+            ->with('myplaylists', $myplaylists)
+            ->with('playlists', $playlists);
     }
 
     /**

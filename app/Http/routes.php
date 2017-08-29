@@ -49,7 +49,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	});*/
 
 	
-	Route::get('playlists/all', 'PlaylistsController@all');
+	//Route::get('playlists/all', 'PlaylistsController@all');
+
+	Route::get('playlists/edit/{id}', [
+		'uses' 	=> 'PlaylistsController@edit',
+		'as'	=> 'admin.playlists.edit'
+	]);
 
 	/*
 	*	YouTube Videos
